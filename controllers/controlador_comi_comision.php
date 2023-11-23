@@ -6,25 +6,25 @@
  * @final En proceso
  *
  */
-namespace gamboamartin\gastos\controllers;
+namespace gamboamartin\comisiones\controllers;
 
 use base\controller\controler;
+use gamboamartin\comisiones\models\comi_comision;
 use gamboamartin\errores\errores;
-use gamboamartin\gastos\models\gt_tipo_solicitud;
 use gamboamartin\system\_ctl_parent_sin_codigo;
 use gamboamartin\system\links_menu;
 use gamboamartin\template\html;
-use html\gt_tipo_solicitud_html;
+use html\comi_comision_html;
 use PDO;
 use stdClass;
 
-class controlador_gt_tipo_solicitud extends _ctl_parent_sin_codigo {
+class controlador_comi_comision extends _ctl_parent_sin_codigo {
 
     public function __construct(PDO      $link, html $html = new \gamboamartin\template_1\html(),
                                 stdClass $paths_conf = new stdClass())
     {
-        $modelo = new gt_tipo_solicitud(link: $link);
-        $html_ = new gt_tipo_solicitud_html(html: $html);
+        $modelo = new comi_comision(link: $link);
+        $html_ = new comi_comision_html(html: $html);
         $obj_link = new links_menu(link: $link, registro_id: $this->registro_id);
 
         $datatables = $this->init_datatable();
@@ -84,8 +84,8 @@ class controlador_gt_tipo_solicitud extends _ctl_parent_sin_codigo {
 
     private function init_configuraciones(): controler
     {
-        $this->seccion_titulo = 'Tipo Solicitud';
-        $this->titulo_lista = 'Registro de Tipo Solicitud';
+        $this->seccion_titulo = 'Comision';
+        $this->titulo_lista = 'Registro de Comision';
 
         $this->lista_get_data = true;
 
@@ -94,10 +94,10 @@ class controlador_gt_tipo_solicitud extends _ctl_parent_sin_codigo {
 
     protected function init_datatable(): stdClass
     {
-        $columns["gt_tipo_solicitud_id"]["titulo"] = "Id";
-        $columns["gt_tipo_solicitud_descripcion"]["titulo"] = "Descripción";
+        $columns["comi_comision_id"]["titulo"] = "Id";
+        $columns["comi_comision_descripcion"]["titulo"] = "Descripción";
 
-        $filtro = array("gt_tipo_solicitud.id","gt_tipo_solicitud.descripcion");
+        $filtro = array("comi_comision.id","comi_comision.descripcion");
 
         $datatables = new stdClass();
         $datatables->columns = $columns;

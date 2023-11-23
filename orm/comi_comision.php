@@ -1,13 +1,13 @@
 <?php
-namespace gamboamartin\gastos\models;
+namespace gamboamartin\comisiones\models;
 
 use base\orm\_modelo_parent_sin_codigo;
 use PDO;
 
 
-class gt_tipo_solicitud extends _modelo_parent_sin_codigo {
+class comi_comision extends _modelo_parent_sin_codigo {
     public function __construct(PDO $link){
-        $tabla = 'gt_tipo_solicitud';
+        $tabla = 'comi_comision';
         $columnas = array($tabla=>false);
         $campos_obligatorios = array();
 
