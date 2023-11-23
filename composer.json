@@ -60,7 +60,8 @@
         "gamboa.martin/organigrama": "^14.0.0",
         "gamboa.martin/documento": "^12.0.0",
         "gamboa.martin/comercial": "^18.0.0",
-        "gamboa.martin/proceso": "^13.0.0"
+        "gamboa.martin/proceso": "^13.0.0",
+        "gamboa.martin/facturacion": "^18.0.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5"
