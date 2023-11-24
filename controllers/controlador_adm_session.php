@@ -6,7 +6,7 @@
  * @final En proceso
  *
  */
-namespace gamboamartin\gastos\controllers;
+namespace gamboamartin\comisiones\controllers;
 
 use config\generales;
 use gamboamartin\errores\errores;
