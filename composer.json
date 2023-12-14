@@ -15,9 +15,9 @@
           "gamboamartin\\comisiones\\controllers\\": "controllers",
           "config\\": "config/",
           "gamboamartin\\comisiones\\models\\": "orm",
-          "tests\\": "tests/",
+          "gamboamartin\\comisiones\\tests\\": "tests/",
           "links\\": "links/",
-          "html\\": "templates/directivas/"
+          "gamboamartin\\comisiones\\html\\": "templates/directivas/"
 
         }
     },
