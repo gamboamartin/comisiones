@@ -14,7 +14,7 @@ use gamboamartin\errores\errores;
 use gamboamartin\system\_ctl_parent_sin_codigo;
 use gamboamartin\system\links_menu;
 use gamboamartin\template\html;
-use html\comi_rel_comision_factura_html;
+use gamboamartin\comisiones\html\comi_rel_comision_factura_html;
 
 use PDO;
 use stdClass;

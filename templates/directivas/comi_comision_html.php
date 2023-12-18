@@ -1,5 +1,5 @@
 <?php
-namespace html;
+namespace gamboamartin\comisiones\html;
 
 use gamboamartin\comisiones\models\comi_comision;
 use gamboamartin\errores\errores;

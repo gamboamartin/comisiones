@@ -1,5 +1,5 @@
 <?php
-namespace html;
+namespace gamboamartin\comisiones\html;
 
 use gamboamartin\comisiones\models\comi_conf_comision;
 use gamboamartin\comisiones\models\comi_rel_comision_factura;

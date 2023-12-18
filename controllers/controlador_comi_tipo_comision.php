@@ -15,8 +15,8 @@ use gamboamartin\errores\errores;
 use gamboamartin\system\_ctl_parent_sin_codigo;
 use gamboamartin\system\links_menu;
 use gamboamartin\template\html;
-use html\comi_comision_html;
-use html\comi_tipo_comision_html;
+use gamboamartin\comisiones\html\comi_comision_html;
+use gamboamartin\comisiones\html\comi_tipo_comision_html;
 use PDO;
 use stdClass;
 
