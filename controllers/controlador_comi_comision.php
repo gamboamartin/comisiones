@@ -95,9 +95,12 @@ class controlador_comi_comision extends _ctl_parent_sin_codigo {
     protected function init_datatable(): stdClass
     {
         $columns["comi_comision_id"]["titulo"] = "Id";
-        $columns["comi_comision_descripcion"]["titulo"] = "Descripción";
+        $columns["com_agente_descripcion"]["titulo"] = "Agente";
+        $columns["comi_comision_monto_pago"]["titulo"] = "Monto";
+        $columns["comi_comision_fecha_pago"]["titulo"] = "Fecha";
 
-        $filtro = array("comi_comision.id","comi_comision.descripcion");
+        $filtro = array("comi_comision.id","com_agente.descripcion","comi_comision.monto_pago",
+            "comi_comision.fecha_pago");
 
         $datatables = new stdClass();
         $datatables->columns = $columns;
