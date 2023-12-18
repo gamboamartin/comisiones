@@ -1,6 +1,6 @@
 <?php
 
-namespace gamboamartin\gastos\controllers;
+namespace gamboamartin\comisiones\controllers;
 
 enum constantes: string
 {
