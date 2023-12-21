@@ -9,6 +9,7 @@
 namespace gamboamartin\comisiones\controllers;
 
 use base\controller\controler;
+use base\controller\init;
 use gamboamartin\comisiones\models\comi_comision;
 use gamboamartin\errores\errores;
 use gamboamartin\system\_ctl_parent_sin_codigo;
@@ -54,7 +55,36 @@ class controlador_comi_comision extends _ctl_parent_sin_codigo {
             return $this->retorno_error(mensaje: 'Error al inicializar alta', data: $r_alta, header: $header, ws: $ws);
         }
 
-        $inputs = $this->inputs(keys_selects: array());
+        $keys_selects = $this->key_select(cols:12, con_registros: true,filtro:  array(), key: 'com_agente_id',
+            keys_selects: array(), id_selected: -1, label: 'Agente');
+        if(errores::$error){
+            return $this->retorno_error(mensaje: 'Error al maquetar key_selects',data:  $keys_selects, header: $header,ws:  $ws);
+        }
+
+        $keys_selects = $this->key_select(cols:6, con_registros: true,filtro:  array(), key: 'fc_factura_id',
+            keys_selects: array(), id_selected: -1, label: 'Factura');
+        if(errores::$error){
+            return $this->retorno_error(mensaje: 'Error al maquetar key_selects',data:  $keys_selects, header: $header,ws:  $ws);
+        }
+
+        $keys_selects = $this->key_select(cols:6, con_registros: true,filtro:  array(), key: 'comi_conf_comision_id',
+            keys_selects: array(), id_selected: -1, label: 'Conf Comision');
+        if(errores::$error){
+            return $this->retorno_error(mensaje: 'Error al maquetar key_selects',data:  $keys_selects, header: $header,ws:  $ws);
+        }
+
+        $keys_selects = $this->key_selects_txt(keys_selects: $keys_selects);
+        if(errores::$error){
+            return $this->retorno_error(mensaje: 'Error al maquetar key_selects',data:  $keys_selects, header: $header,ws:  $ws);
+        }
+
+        $keys_selects = $this->key_select_fecha(cols: 6, key: 'fecha_pago',
+            keys_selects: $keys_selects, place_holder: 'Fecha Pago');
+        if (errores::$error) {
+            return $this->retorno_error(mensaje: 'Error al maquetar key_selects',data:  $keys_selects, header: $header,ws:  $ws);
+        }
+
+        $inputs = $this->inputs(keys_selects: $keys_selects);
         if (errores::$error) {
             return $this->retorno_error(
                 mensaje: 'Error al obtener inputs', data: $inputs, header: $header, ws: $ws);
@@ -111,20 +141,39 @@ class controlador_comi_comision extends _ctl_parent_sin_codigo {
 
     protected function key_selects_txt(array $keys_selects): array
     {
-        $keys_selects = (new \base\controller\init())->key_select_txt(cols: 4, key: 'codigo',
-            keys_selects: $keys_selects, place_holder: 'Código');
-        if (errores::$error) {
-            return $this->errores->error(mensaje: 'Error al maquetar key_selects', data: $keys_selects);
-        }
-
-        $keys_selects = (new \base\controller\init())->key_select_txt(cols: 12, key: 'descripcion',
-            keys_selects: $keys_selects, place_holder: 'Descripción');
-        if (errores::$error) {
-            return $this->errores->error(mensaje: 'Error al maquetar key_selects', data: $keys_selects);
+        $keys_selects = (new init())->key_select_txt(cols: 6, key: 'monto_pago',
+            keys_selects: $keys_selects, place_holder: 'Monto Pago');
+        if(errores::$error){
+            return $this->errores->error(mensaje: 'Error al maquetar key_selects',data:  $keys_selects);
         }
 
         return $keys_selects;
     }
+
+    public function key_select_fecha(int $cols, string $key, array $keys_selects, string $place_holder,
+                                   bool $required = true, mixed $value = ''): array
+    {
+        $key = trim($key);
+        if($key === ''){
+            return $this->errores->error(mensaje: 'Error key esta vacio',data:  $key);
+        }
+
+        if(!isset($keys_selects[$key])) {
+            $keys_selects[$key] = new stdClass();
+        }
+        if(!isset($keys_selects[$key]->cols)) {
+            $keys_selects[$key]->cols = $cols;
+        }
+        if(!isset($keys_selects[$key]->place_holder)) {
+            $keys_selects[$key]->place_holder = $place_holder;
+        }
+        if(!isset($keys_selects[$key]->required)) {
+            $keys_selects[$key]->required = $required;
+        }
+
+        return $keys_selects;
+    }
+
 
     public function modifica(bool $header, bool $ws = false, array $keys_selects = array()): array|stdClass
     {
