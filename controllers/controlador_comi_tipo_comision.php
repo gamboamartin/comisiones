@@ -96,10 +96,10 @@ class controlador_comi_tipo_comision extends _ctl_parent_sin_codigo {
 
     protected function init_datatable(): stdClass
     {
-        $columns["com_tipo_comision_id"]["titulo"] = "Id";
-        $columns["com_tipo_comision_descripcion"]["titulo"] = "Descripción";
+        $columns["comi_tipo_comision_id"]["titulo"] = "Id";
+        $columns["comi_tipo_comision_descripcion"]["titulo"] = "Descripción";
 
-        $filtro = array("com_tipo_comision.id","com_tipo_comision.descripcion");
+        $filtro = array("comi_tipo_comision.id","comi_tipo_comision.descripcion");
 
         $datatables = new stdClass();
         $datatables->columns = $columns;
@@ -116,7 +116,7 @@ class controlador_comi_tipo_comision extends _ctl_parent_sin_codigo {
             return $this->errores->error(mensaje: 'Error al maquetar key_selects', data: $keys_selects);
         }
 
-        $keys_selects = (new \base\controller\init())->key_select_txt(cols: 12, key: 'descripcion',
+        $keys_selects = (new \base\controller\init())->key_select_txt(cols: 8, key: 'descripcion',
             keys_selects: $keys_selects, place_holder: 'Descripción');
         if (errores::$error) {
             return $this->errores->error(mensaje: 'Error al maquetar key_selects', data: $keys_selects);
