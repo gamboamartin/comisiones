@@ -62,13 +62,13 @@ class controlador_comi_comision extends _ctl_parent_sin_codigo {
         }
 
         $keys_selects = $this->key_select(cols:6, con_registros: true,filtro:  array(), key: 'fc_factura_id',
-            keys_selects: array(), id_selected: -1, label: 'Factura');
+            keys_selects: $keys_selects, id_selected: -1, label: 'Factura');
         if(errores::$error){
             return $this->retorno_error(mensaje: 'Error al maquetar key_selects',data:  $keys_selects, header: $header,ws:  $ws);
         }
 
         $keys_selects = $this->key_select(cols:6, con_registros: true,filtro:  array(), key: 'comi_conf_comision_id',
-            keys_selects: array(), id_selected: -1, label: 'Conf Comision');
+            keys_selects: $keys_selects, id_selected: -1, label: 'Conf Comision');
         if(errores::$error){
             return $this->retorno_error(mensaje: 'Error al maquetar key_selects',data:  $keys_selects, header: $header,ws:  $ws);
         }
@@ -96,13 +96,15 @@ class controlador_comi_comision extends _ctl_parent_sin_codigo {
     protected function campos_view(array $inputs = array()): array
     {
         $keys = new stdClass();
-        $keys->inputs = array('codigo', 'descripcion');
+        $keys->inputs = array('monto_pago');
         $keys->telefonos = array();
-        $keys->fechas = array();
+        $keys->fechas = array('fecha_pago');
         $keys->selects = array();
 
         $init_data = array();
-
+        $init_data['com_agente'] = "gamboamartin\\comercial";
+        $init_data['fc_factura'] = "gamboamartin\\facturacion";
+        $init_data['comi_conf_comision'] = "gamboamartin\\comisiones";
 
         $campos_view = $this->campos_view_base(init_data: $init_data, keys: $keys);
         if (errores::$error) {
