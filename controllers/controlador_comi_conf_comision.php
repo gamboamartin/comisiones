@@ -9,6 +9,7 @@
 namespace gamboamartin\comisiones\controllers;
 
 use base\controller\controler;
+use base\controller\init;
 use gamboamartin\comisiones\models\comi_conf_comision;
 use gamboamartin\errores\errores;
 use gamboamartin\system\_ctl_parent_sin_codigo;
@@ -54,7 +55,18 @@ class controlador_comi_conf_comision extends _ctl_parent_sin_codigo {
             return $this->retorno_error(mensaje: 'Error al inicializar alta', data: $r_alta, header: $header, ws: $ws);
         }
 
-        $inputs = $this->inputs(keys_selects: array());
+        $keys_selects = $this->key_select(cols:6, con_registros: true,filtro:  array(), key: 'com_tipo_agente_id',
+            keys_selects: array(), id_selected: -1, label: 'Tipo Agente');
+        if(errores::$error){
+            return $this->retorno_error(mensaje: 'Error al maquetar key_selects',data:  $keys_selects, header: $header,ws:  $ws);
+        }
+
+        $keys_selects = $this->key_selects_txt(keys_selects: $keys_selects);
+        if(errores::$error){
+            return $this->retorno_error(mensaje: 'Error al maquetar key_selects',data:  $keys_selects, header: $header,ws:  $ws);
+        }
+
+        $inputs = $this->inputs(keys_selects: $keys_selects);
         if (errores::$error) {
             return $this->retorno_error(
                 mensaje: 'Error al obtener inputs', data: $inputs, header: $header, ws: $ws);
@@ -66,13 +78,13 @@ class controlador_comi_conf_comision extends _ctl_parent_sin_codigo {
     protected function campos_view(array $inputs = array()): array
     {
         $keys = new stdClass();
-        $keys->inputs = array('codigo', 'descripcion');
+        $keys->inputs = array('monto_pago');
         $keys->telefonos = array();
-        $keys->fechas = array();
+        $keys->fechas = array('fecha_inicial','fecha_final');
         $keys->selects = array();
 
         $init_data = array();
-
+        $init_data['com_tipo_agente'] = "gamboamartin\\comercial";
 
         $campos_view = $this->campos_view_base(init_data: $init_data, keys: $keys);
         if (errores::$error) {
@@ -108,16 +120,22 @@ class controlador_comi_conf_comision extends _ctl_parent_sin_codigo {
 
     protected function key_selects_txt(array $keys_selects): array
     {
-        $keys_selects = (new \base\controller\init())->key_select_txt(cols: 4, key: 'codigo',
-            keys_selects: $keys_selects, place_holder: 'Código');
-        if (errores::$error) {
-            return $this->errores->error(mensaje: 'Error al maquetar key_selects', data: $keys_selects);
+        $keys_selects = (new init())->key_select_txt(cols: 6, key: 'fecha_inicial',
+            keys_selects: $keys_selects, place_holder: 'Fecha Inicial');
+        if(errores::$error){
+            return $this->errores->error(mensaje: 'Error al maquetar key_selects',data:  $keys_selects);
         }
 
-        $keys_selects = (new \base\controller\init())->key_select_txt(cols: 12, key: 'descripcion',
-            keys_selects: $keys_selects, place_holder: 'Descripción');
-        if (errores::$error) {
-            return $this->errores->error(mensaje: 'Error al maquetar key_selects', data: $keys_selects);
+        $keys_selects = (new init())->key_select_txt(cols: 6, key: 'fecha_final',
+            keys_selects: $keys_selects, place_holder: 'Fecha Final');
+        if(errores::$error){
+            return $this->errores->error(mensaje: 'Error al maquetar key_selects',data:  $keys_selects);
+        }
+
+        $keys_selects = (new init())->key_select_txt(cols: 6, key: 'monto_pago',
+            keys_selects: $keys_selects, place_holder: 'Monto Pago');
+        if(errores::$error){
+            return $this->errores->error(mensaje: 'Error al maquetar key_selects',data:  $keys_selects);
         }
 
         return $keys_selects;
