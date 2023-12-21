@@ -2,6 +2,8 @@
 namespace gamboamartin\comisiones\models;
 
 use base\orm\_modelo_parent_sin_codigo;
+use gamboamartin\errores\errores;
+use stdClass;
 use PDO;
 
 
@@ -19,5 +21,16 @@ class comi_comision extends _modelo_parent_sin_codigo {
             columnas: $columnas,no_duplicados: $no_duplicados);
 
         $this->NAMESPACE = __NAMESPACE__;
+    }
+
+    public function alta_bd(array $keys_integra_ds = array('codigo', 'descripcion')): array|stdClass
+    {
+
+        $r_alta_bd = parent::alta_bd($keys_integra_ds);
+        if (errores::$error) {
+            return $this->error->error(mensaje: 'Error al insertar solicitud etapa', data: $r_alta_bd);
+        }
+
+        return $r_alta_bd;
     }
 }
