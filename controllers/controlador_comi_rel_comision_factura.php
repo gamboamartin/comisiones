@@ -98,8 +98,8 @@ class controlador_comi_rel_comision_factura extends _ctl_parent_sin_codigo {
 
     private function init_configuraciones(): controler
     {
-        $this->seccion_titulo = 'Tipo Comision';
-        $this->titulo_lista = 'Registro de Tipo Comision';
+        $this->seccion_titulo = 'Rel Comision Factura';
+        $this->titulo_lista = 'Registro de Rel Comision Factura';
 
         $this->lista_get_data = true;
 
