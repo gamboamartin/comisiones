@@ -145,6 +145,18 @@ class controlador_comi_rel_comision_factura extends _ctl_parent_sin_codigo {
                 mensaje: 'Error al generar salida de template', data: $r_modifica, header: $header, ws: $ws);
         }
 
+        $keys_selects = $this->key_select(cols:6, con_registros: true,filtro:  array(), key: 'comi_comision_id',
+            keys_selects: array(), id_selected: $this->row_upd->comi_comision_id, label: 'Comision');
+        if(errores::$error){
+            return $this->retorno_error(mensaje: 'Error al maquetar key_selects',data:  $keys_selects, header: $header,ws:  $ws);
+        }
+
+        $keys_selects = $this->key_select(cols:6, con_registros: true,filtro:  array(), key: 'fc_factura_id',
+            keys_selects: $keys_selects, id_selected: $this->row_upd->fc_factura_id, label: 'Factura');
+        if(errores::$error){
+            return $this->retorno_error(mensaje: 'Error al maquetar key_selects',data:  $keys_selects, header: $header,ws:  $ws);
+        }
+
         $base = $this->base_upd(keys_selects: $keys_selects, params: array(), params_ajustados: array());
         if (errores::$error) {
             return $this->retorno_error(mensaje: 'Error al integrar base', data: $base, header: $header, ws: $ws);
