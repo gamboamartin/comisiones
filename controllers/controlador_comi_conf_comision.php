@@ -61,6 +61,12 @@ class controlador_comi_conf_comision extends _ctl_parent_sin_codigo {
             return $this->retorno_error(mensaje: 'Error al maquetar key_selects',data:  $keys_selects, header: $header,ws:  $ws);
         }
 
+        $keys_selects = $this->key_select(cols:12, con_registros: true,filtro:  array(), key: 'comi_tipo_comision_id',
+            keys_selects: $keys_selects, id_selected: -1, label: 'Tipo Comision');
+        if(errores::$error){
+            return $this->retorno_error(mensaje: 'Error al maquetar key_selects',data:  $keys_selects, header: $header,ws:  $ws);
+        }
+
         $keys_selects = $this->key_selects_txt(keys_selects: $keys_selects);
         if(errores::$error){
             return $this->retorno_error(mensaje: 'Error al maquetar key_selects',data:  $keys_selects, header: $header,ws:  $ws);
@@ -85,6 +91,7 @@ class controlador_comi_conf_comision extends _ctl_parent_sin_codigo {
 
         $init_data = array();
         $init_data['com_tipo_agente'] = "gamboamartin\\comercial";
+        $init_data['comi_tipo_comision'] = "gamboamartin\\comisiones";
 
         $campos_view = $this->campos_view_base(init_data: $init_data, keys: $keys);
         if (errores::$error) {
@@ -151,6 +158,12 @@ class controlador_comi_conf_comision extends _ctl_parent_sin_codigo {
 
         $keys_selects = $this->key_select(cols:6, con_registros: true,filtro:  array(), key: 'com_tipo_agente_id',
             keys_selects: array(), id_selected: $this->row_upd->com_tipo_agente_id, label: 'Tipo Agente');
+        if(errores::$error){
+            return $this->retorno_error(mensaje: 'Error al maquetar key_selects',data:  $keys_selects, header: $header,ws:  $ws);
+        }
+
+        $keys_selects = $this->key_select(cols:12, con_registros: true,filtro:  array(), key: 'comi_tipo_comision_id',
+            keys_selects: $keys_selects, id_selected: $this->row_upd->comi_tipo_comision_id, label: 'Tipo Agente');
         if(errores::$error){
             return $this->retorno_error(mensaje: 'Error al maquetar key_selects',data:  $keys_selects, header: $header,ws:  $ws);
         }
