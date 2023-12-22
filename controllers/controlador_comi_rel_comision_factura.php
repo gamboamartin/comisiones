@@ -55,7 +55,19 @@ class controlador_comi_rel_comision_factura extends _ctl_parent_sin_codigo {
             return $this->retorno_error(mensaje: 'Error al inicializar alta', data: $r_alta, header: $header, ws: $ws);
         }
 
-        $inputs = $this->inputs(keys_selects: array());
+        $keys_selects = $this->key_select(cols:6, con_registros: true,filtro:  array(), key: 'comi_comision_id',
+            keys_selects: array(), id_selected: -1, label: 'Comision');
+        if(errores::$error){
+            return $this->retorno_error(mensaje: 'Error al maquetar key_selects',data:  $keys_selects, header: $header,ws:  $ws);
+        }
+
+        $keys_selects = $this->key_select(cols:6, con_registros: true,filtro:  array(), key: 'fc_factura_id',
+            keys_selects: $keys_selects, id_selected: -1, label: 'Factura');
+        if(errores::$error){
+            return $this->retorno_error(mensaje: 'Error al maquetar key_selects',data:  $keys_selects, header: $header,ws:  $ws);
+        }
+
+        $inputs = $this->inputs(keys_selects: $keys_selects);
         if (errores::$error) {
             return $this->retorno_error(
                 mensaje: 'Error al obtener inputs', data: $inputs, header: $header, ws: $ws);
@@ -73,7 +85,8 @@ class controlador_comi_rel_comision_factura extends _ctl_parent_sin_codigo {
         $keys->selects = array();
 
         $init_data = array();
-
+        $init_data['comi_comision'] = "gamboamartin\\comisiones";
+        $init_data['fc_factura'] = "gamboamartin\\facturacion";
 
         $campos_view = $this->campos_view_base(init_data: $init_data, keys: $keys);
         if (errores::$error) {
