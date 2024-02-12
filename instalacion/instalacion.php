@@ -67,6 +67,7 @@ class instalacion
 
         $foraneas = array();
         $foraneas['com_tipo_agente_id'] = new stdClass();
+        $foraneas['comi_tipo_comision_id'] = new stdClass();
 
         $foraneas_r = (new _instalacion(link:$link))->foraneas(foraneas: $foraneas,table:  'comi_conf_comision');
 
@@ -192,7 +193,7 @@ class instalacion
             return (new errores())->error(mensaje: 'Error integrar comi_comision', data:  $comi_comision);
         }
         $out->comi_comision = $comi_comision;
-        
+
         return $out;
 
     }
