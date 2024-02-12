@@ -29,26 +29,58 @@ use stdClass;
 
 class instalacion
 {
-    private stdClass $data;
-
-    public function __construct()
+    private function _add_comi_comision(PDO $link): array|stdClass
     {
-        $data = $this->data();
+        $out = new stdClass();
+        $create = (NEW _instalacion($link))->create_table_new(table:'comi_comision');
         if(errores::$error){
-            $error = (new errores())->error(mensaje: 'Error al incializar',data:  $data);
-            print_r($error);
-            exit;
+            return (new errores())->error(mensaje: 'Error al crear comi_comision', data: $create);
         }
 
+        $out->create = $create;
+
+        return $out;
     }
 
-    private function data(): stdClass|array
+    private function _add_comi_conf_comision(PDO $link): array|stdClass
     {
-        $this->data = new stdClass();
+        $out = new stdClass();
+        $create = (NEW _instalacion($link))->create_table_new(table:'comi_conf_comision');
+        if(errores::$error){
+            return (new errores())->error(mensaje: 'Error al crear comi_conf_comision', data: $create);
+        }
 
-        return $this->data;
+        $out->create = $create;
 
+        return $out;
     }
+
+    private function _add_comi_rel_comision_factura(PDO $link): array|stdClass
+    {
+        $out = new stdClass();
+        $create = (NEW _instalacion($link))->create_table_new(table:'comi_rel_comision_factura');
+        if(errores::$error){
+            return (new errores())->error(mensaje: 'Error al crear comi_rel_comision_factura', data: $create);
+        }
+
+        $out->create = $create;
+
+        return $out;
+    }
+
+    private function _add_comi_tipo_comision(PDO $link): array|stdClass
+    {
+        $out = new stdClass();
+        $create = (NEW _instalacion($link))->create_table_new(table:'comi_tipo_comision');
+        if(errores::$error){
+            return (new errores())->error(mensaje: 'Error al crear comi_tipo_comision', data: $create);
+        }
+
+        $out->create = $create;
+
+        return $out;
+    }
+
 
     final public function instala(PDO $link): array|stdClass
     {
