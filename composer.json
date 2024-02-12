@@ -16,6 +16,7 @@
           "config\\": "config/",
           "gamboamartin\\comisiones\\models\\": "orm",
           "gamboamartin\\comisiones\\tests\\": "tests/",
+          "gamboamartin\\comisiones\\instalacion\\": "instalacion/",
           "links\\": "links/",
           "gamboamartin\\comisiones\\html\\": "templates/directivas/"
 
