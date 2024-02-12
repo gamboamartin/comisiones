@@ -11,7 +11,7 @@ use PDO;
 class comi_conf_comision extends _modelo_parent_sin_codigo {
     public function __construct(PDO $link){
         $tabla = 'comi_conf_comision';
-        $columnas = array($tabla=>false, 'com_tipo_agente' => $tabla);
+        $columnas = array($tabla=>false, 'com_tipo_agente' => $tabla,'comi_tipo_comision' => $tabla);
         $campos_obligatorios = array();
 
         $no_duplicados = array();
