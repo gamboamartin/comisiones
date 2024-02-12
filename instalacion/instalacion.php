@@ -175,6 +175,18 @@ class instalacion
         }
         $out->comi_tipo_comision = $comi_tipo_comision;
 
+        $comi_rel_comision_factura = $this->comi_rel_comision_factura(link: $link);
+        if(errores::$error){
+            return (new errores())->error(mensaje: 'Error integrar comi_rel_comision_factura', data:  $comi_rel_comision_factura);
+        }
+        $out->comi_rel_comision_factura = $comi_rel_comision_factura;
+
+        $comi_conf_comision = $this->comi_conf_comision(link: $link);
+        if(errores::$error){
+            return (new errores())->error(mensaje: 'Error integrar comi_conf_comision', data:  $comi_conf_comision);
+        }
+        $out->comi_conf_comision = $comi_conf_comision;
+
 
         return $out;
 
