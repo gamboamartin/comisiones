@@ -187,7 +187,12 @@ class instalacion
         }
         $out->comi_conf_comision = $comi_conf_comision;
 
-
+        $comi_comision = $this->comi_comision(link: $link);
+        if(errores::$error){
+            return (new errores())->error(mensaje: 'Error integrar comi_comision', data:  $comi_comision);
+        }
+        $out->comi_comision = $comi_comision;
+        
         return $out;
 
     }
