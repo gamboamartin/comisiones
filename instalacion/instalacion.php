@@ -104,12 +104,76 @@ class instalacion
         return $out;
     }
 
+    private function comi_comision(PDO $link): array|stdClass
+    {
+        $out = new stdClass();
+
+        $create = $this->_add_comi_comision(link: $link);
+        if(errores::$error){
+            return (new errores())->error(mensaje: 'Error al agregar tabla', data:  $create);
+        }
+
+        $out->campos = $create;
+
+        return $out;
+
+    }
+
+    private function comi_conf_comision(PDO $link): array|stdClass
+    {
+        $out = new stdClass();
+
+        $create = $this->_add_comi_conf_comision(link: $link);
+        if(errores::$error){
+            return (new errores())->error(mensaje: 'Error al agregar tabla', data:  $create);
+        }
+
+        $out->campos = $create;
+
+        return $out;
+
+    }
+
+    private function comi_rel_comision_factura(PDO $link): array|stdClass
+    {
+        $out = new stdClass();
+
+        $create = $this->_add_comi_rel_comision_factura(link: $link);
+        if(errores::$error){
+            return (new errores())->error(mensaje: 'Error al agregar tabla', data:  $create);
+        }
+
+        $out->campos = $create;
+
+        return $out;
+
+    }
+
+    private function comi_tipo_comision(PDO $link): array|stdClass
+    {
+        $out = new stdClass();
+
+        $create = $this->_add_comi_tipo_comision(link: $link);
+        if(errores::$error){
+            return (new errores())->error(mensaje: 'Error al agregar tabla', data:  $create);
+        }
+
+        $out->campos = $create;
+
+        return $out;
+
+    }
 
     final public function instala(PDO $link): array|stdClass
     {
 
         $out = new stdClass();
 
+        $comi_tipo_comision = $this->comi_tipo_comision(link: $link);
+        if(errores::$error){
+            return (new errores())->error(mensaje: 'Error integrar comi_tipo_comision', data:  $comi_tipo_comision);
+        }
+        $out->comi_tipo_comision = $comi_tipo_comision;
 
 
         return $out;
