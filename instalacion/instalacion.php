@@ -39,6 +39,19 @@ class instalacion
 
         $out->create = $create;
 
+        $foraneas = array();
+        $foraneas['com_agente_id'] = new stdClass();
+        $foraneas['fc_factura_id'] = new stdClass();
+        $foraneas['comi_conf_comision_id'] = new stdClass();
+        $foraneas['comi_tipo_comision_id'] = new stdClass();
+
+        $foraneas_r = (new _instalacion(link:$link))->foraneas(foraneas: $foraneas,table:  'comi_comision');
+
+        if(errores::$error){
+            return (new errores())->error(mensaje: 'Error al ajustar foranea', data:  $foraneas_r);
+        }
+        $out->foraneas_r = $foraneas_r;
+
         return $out;
     }
 
@@ -51,6 +64,16 @@ class instalacion
         }
 
         $out->create = $create;
+
+        $foraneas = array();
+        $foraneas['com_tipo_agente_id'] = new stdClass();
+
+        $foraneas_r = (new _instalacion(link:$link))->foraneas(foraneas: $foraneas,table:  'comi_conf_comision');
+
+        if(errores::$error){
+            return (new errores())->error(mensaje: 'Error al ajustar foranea', data:  $foraneas_r);
+        }
+        $out->foraneas_r = $foraneas_r;
 
         return $out;
     }
