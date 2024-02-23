@@ -52,6 +52,21 @@ class instalacion
         }
         $out->foraneas_r = $foraneas_r;
 
+        $campos = new stdClass();
+        $campos->monto_pago = new stdClass();
+        $campos->monto_pago->tipo_dato = 'DOUBLE';
+
+        $campos->fecha_pago = new stdClass();
+        $campos->fecha_pago->tipo_dato = 'DATETIME';
+
+
+        $result = (new _instalacion(link: $link))->add_columns(campos: $campos,table:  'comi_comision');
+
+        if(errores::$error){
+            return (new errores())->error(mensaje: 'Error al ajustar campos', data:  $result);
+        }
+        $out->columnas = $result;
+
         return $out;
     }
 
@@ -68,6 +83,7 @@ class instalacion
         $foraneas = array();
         $foraneas['com_tipo_agente_id'] = new stdClass();
         $foraneas['comi_tipo_comision_id'] = new stdClass();
+        $foraneas['cat_sat_periodo_id'] = new stdClass();
 
         $foraneas_r = (new _instalacion(link:$link))->foraneas(foraneas: $foraneas,table:  'comi_conf_comision');
 
@@ -75,6 +91,20 @@ class instalacion
             return (new errores())->error(mensaje: 'Error al ajustar foranea', data:  $foraneas_r);
         }
         $out->foraneas_r = $foraneas_r;
+
+        $campos = new stdClass();
+        $campos->monto_pago = new stdClass();
+        $campos->monto_pago->tipo_dato = 'DOUBLE';
+
+        $campos->porcentaje_pago = new stdClass();
+        $campos->porcentaje_pago->tipo_dato = 'DOUBLE';
+
+        $result = (new _instalacion(link: $link))->add_columns(campos: $campos,table:  'comi_conf_comision');
+
+        if(errores::$error){
+            return (new errores())->error(mensaje: 'Error al ajustar campos', data:  $result);
+        }
+        $out->columnas = $result;
 
         return $out;
     }
