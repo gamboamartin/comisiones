@@ -38,6 +38,7 @@ class comi_comision extends _modelo_parent_sin_codigo {
             return $this->error->error(mensaje: 'Error al insertar conf_comision', data: $r_conf_comision);
         }
 
+
         if(!isset($this->registro['codigo'])){
             $this->registro['codigo'] = $r_agente['com_agente_descripcion']." - ".
                 $r_conf_comision['comi_conf_comision_descripcion']." - ".rand();
@@ -58,5 +59,26 @@ class comi_comision extends _modelo_parent_sin_codigo {
         }
 
         return $r_alta_bd;
+    }
+
+    public function aplica_conf(int $comi_conf_comision_id, string $fecha_comision){
+
+        $filtro_fecha['campo_1'] = 'fecha_inicial';
+        $filtro_fecha['campo_2'] = 'fecha_final';
+        $filtro_fecha['fecha'] = $fecha_comision;
+
+        $filtro['comi_conf_comision.id'] = $comi_conf_comision_id;
+
+        $r_conf_comision = (new comi_conf_comision(link: $this->link))->filtro_and(filtro: $filtro,
+            filtro_fecha: $filtro_fecha);
+        if (errores::$error) {
+            return $this->error->error(mensaje: 'Error al insertar conf_comision', data: $r_conf_comision);
+        }
+
+        if($r_conf_comision->n_registros < 1){
+            return $this->error->error(mensaje: 'Error no existe configuracion comision', data: $r_conf_comision);
+        }
+
+        return $r_conf_comision;
     }
 }
