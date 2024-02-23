@@ -109,19 +109,6 @@ class instalacion
         return $out;
     }
 
-    private function _add_comi_periodo(PDO $link): array|stdClass
-    {
-        $out = new stdClass();
-        $create = (NEW _instalacion($link))->create_table_new(table:'comi_periodo');
-        if(errores::$error){
-            return (new errores())->error(mensaje: 'Error al crear comi_periodo', data: $create);
-        }
-
-        $out->create = $create;
-
-        return $out;
-    }
-
     private function _add_comi_rel_comision_factura(PDO $link): array|stdClass
     {
         $out = new stdClass();
@@ -178,21 +165,6 @@ class instalacion
 
     }
 
-    private function comi_periodo(PDO $link): array|stdClass
-    {
-        $out = new stdClass();
-
-        $create = $this->_add_comi_periodo(link: $link);
-        if(errores::$error){
-            return (new errores())->error(mensaje: 'Error al agregar tabla', data:  $create);
-        }
-
-        $out->campos = $create;
-
-        return $out;
-
-    }
-
     private function comi_rel_comision_factura(PDO $link): array|stdClass
     {
         $out = new stdClass();
@@ -239,12 +211,6 @@ class instalacion
             return (new errores())->error(mensaje: 'Error integrar comi_rel_comision_factura', data:  $comi_rel_comision_factura);
         }
         $out->comi_rel_comision_factura = $comi_rel_comision_factura;
-
-        $comi_periodo = $this->comi_periodo(link: $link);
-        if(errores::$error){
-            return (new errores())->error(mensaje: 'Error integrar comi_periodo', data:  $comi_periodo);
-        }
-        $out->comi_periodo = $comi_periodo;
 
         $comi_conf_comision = $this->comi_conf_comision(link: $link);
         if(errores::$error){
