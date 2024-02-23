@@ -133,6 +133,23 @@ class instalacion
 
         $out->campos = $create;
 
+        $adm_menu_descripcion = 'Comisiones';
+        $adm_sistema_descripcion = 'comisiones';
+        $etiqueta_label = 'Comisiones';
+        $adm_seccion_pertenece_descripcion = 'comisiones';
+        $adm_namespace_name = 'gamboamartin/comisiones';
+        $adm_namespace_descripcion = 'gamboa.martin/comisiones';
+
+        $acl = (new _adm())->integra_acl(adm_menu_descripcion: $adm_menu_descripcion,
+            adm_namespace_name: $adm_namespace_name, adm_namespace_descripcion: $adm_namespace_descripcion,
+            adm_seccion_descripcion: __FUNCTION__,
+            adm_seccion_pertenece_descripcion: $adm_seccion_pertenece_descripcion,
+            adm_sistema_descripcion: $adm_sistema_descripcion,
+            etiqueta_label: $etiqueta_label, link: $link);
+        if(errores::$error){
+            return (new errores())->error(mensaje: 'Error al obtener acl', data:  $acl);
+        }
+
         return $out;
 
     }
@@ -148,6 +165,24 @@ class instalacion
 
         $out->campos = $create;
 
+        $adm_menu_descripcion = 'Conf. Comisiones';
+        $adm_sistema_descripcion = 'comisiones';
+        $etiqueta_label = 'Conf. Comisiones';
+        $adm_seccion_pertenece_descripcion = 'comisiones';
+        $adm_namespace_name = 'gamboamartin/comisiones';
+        $adm_namespace_descripcion = 'gamboa.martin/comisiones';
+
+        $acl = (new _adm())->integra_acl(adm_menu_descripcion: $adm_menu_descripcion,
+            adm_namespace_name: $adm_namespace_name, adm_namespace_descripcion: $adm_namespace_descripcion,
+            adm_seccion_descripcion: __FUNCTION__,
+            adm_seccion_pertenece_descripcion: $adm_seccion_pertenece_descripcion,
+            adm_sistema_descripcion: $adm_sistema_descripcion,
+            etiqueta_label: $etiqueta_label, link: $link);
+        if(errores::$error){
+            return (new errores())->error(mensaje: 'Error al obtener acl', data:  $acl);
+        }
+
+
         return $out;
 
     }
@@ -162,6 +197,23 @@ class instalacion
         }
 
         $out->campos = $create;
+
+        $adm_menu_descripcion = 'Tipo Comision';
+        $adm_sistema_descripcion = 'comisiones';
+        $etiqueta_label = 'Tipo Comision';
+        $adm_seccion_pertenece_descripcion = 'comisiones';
+        $adm_namespace_name = 'gamboamartin/comisiones';
+        $adm_namespace_descripcion = 'gamboa.martin/comisiones';
+
+        $acl = (new _adm())->integra_acl(adm_menu_descripcion: $adm_menu_descripcion,
+            adm_namespace_name: $adm_namespace_name, adm_namespace_descripcion: $adm_namespace_descripcion,
+            adm_seccion_descripcion: __FUNCTION__,
+            adm_seccion_pertenece_descripcion: $adm_seccion_pertenece_descripcion,
+            adm_sistema_descripcion: $adm_sistema_descripcion,
+            etiqueta_label: $etiqueta_label, link: $link);
+        if(errores::$error){
+            return (new errores())->error(mensaje: 'Error al obtener acl', data:  $acl);
+        }
 
         return $out;
 
