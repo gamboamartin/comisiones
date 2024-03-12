@@ -10,4 +10,6 @@ namespace gamboamartin\comisiones\controllers;
 
 use gamboamartin\cat_sat\models\cat_sat_periodo;
 
-class controlador_cat_sat_periodo extends cat_sat_periodo {}
+class controlador_cat_sat_periodo extends cat_sat_periodo {
+    
+}
