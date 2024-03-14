@@ -1,7 +1,5 @@
 <?php /** @var  \gamboamartin\comisiones\controllers\controlador_comi_conf_comision $controlador  controlador en ejecucion */ ?>
 <?php use config\views; ?>
-<?php echo $controlador->inputs->fecha_inicial; ?>
-<?php echo $controlador->inputs->fecha_final; ?>
 <?php echo $controlador->inputs->monto_pago; ?>
 <?php echo $controlador->inputs->cat_sat_periodo_id; ?>
 <?php echo $controlador->inputs->com_tipo_agente_id; ?>
