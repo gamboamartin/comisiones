@@ -122,8 +122,12 @@ class controlador_comi_conf_comision extends _ctl_parent_sin_codigo {
     {
         $columns["comi_conf_comision_id"]["titulo"] = "Id";
         $columns["comi_conf_comision_descripcion"]["titulo"] = "Descripción";
+        $columns["com_tipo_agente_descripcion"]["titulo"] = "Tipo Agente";
+        $columns["comi_tipo_comision_descripcion"]["titulo"] = "Tipo Comision";
+        $columns["cat_sat_periodo_descripcion"]["titulo"] = "Tipo Comision";
 
-        $filtro = array("comi_conf_comision.id","comi_conf_comision.descripcion");
+        $filtro = array("comi_conf_comision.id","comi_conf_comision.descripcion","com_tipo_agente.descripcion",
+            "comi_tipo_comision.descripcion","cat_sat_periodo.descripcion");
 
         $datatables = new stdClass();
         $datatables->columns = $columns;
