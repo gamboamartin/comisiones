@@ -13,7 +13,7 @@ class comi_comision extends _modelo_parent_sin_codigo {
     public function __construct(PDO $link){
         $tabla = 'comi_comision';
         $columnas = array($tabla=>false, 'com_agente' => $tabla, 'fc_factura' => $tabla,
-            'comi_conf_comision' => $tabla, 'comi_tipo_comision' => $tabla, 'cat_sat_periodo_id'=>$tabla);
+            'comi_conf_comision' => $tabla, 'comi_tipo_comision' => $tabla, 'cat_sat_periodo'=>$tabla);
         $campos_obligatorios = array();
 
         $no_duplicados = array();
