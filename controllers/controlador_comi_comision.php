@@ -55,8 +55,14 @@ class controlador_comi_comision extends _ctl_parent_sin_codigo {
             return $this->retorno_error(mensaje: 'Error al inicializar alta', data: $r_alta, header: $header, ws: $ws);
         }
 
+        $keys_selects = $this->key_select(cols:6, con_registros: true,filtro:  array(), key: 'cat_sat_periodo_id',
+            keys_selects: array(), id_selected: -1, label: 'Periodo');
+        if(errores::$error){
+            return $this->retorno_error(mensaje: 'Error al maquetar key_selects',data:  $keys_selects, header: $header,ws:  $ws);
+        }
+
         $keys_selects = $this->key_select(cols:6, con_registros: true,filtro:  array(), key: 'com_agente_id',
-            keys_selects: array(), id_selected: -1, label: 'Agente');
+            keys_selects: $keys_selects, id_selected: -1, label: 'Agente');
         if(errores::$error){
             return $this->retorno_error(mensaje: 'Error al maquetar key_selects',data:  $keys_selects, header: $header,ws:  $ws);
         }
@@ -99,6 +105,7 @@ class controlador_comi_comision extends _ctl_parent_sin_codigo {
         $init_data['com_agente'] = "gamboamartin\\comercial";
         $init_data['fc_factura'] = "gamboamartin\\facturacion";
         $init_data['comi_conf_comision'] = "gamboamartin\\comisiones";
+        $init_data['cat_sat_periodo'] = "gamboamartin\\cat_sat";
 
         $campos_view = $this->campos_view_base(init_data: $init_data, keys: $keys);
         if (errores::$error) {
